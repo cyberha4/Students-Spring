@@ -1,0 +1,43 @@
+ERROR   2017-03-02 17:43:12,331 [main] ru.ramazanov.dbconnect.ConnectionToDB  - Не найдена конфигурация для connection pull
+javax.naming.NoInitialContextException: Need to specify class name in environment or system property, or as an applet parameter, or in an application resource file:  java.naming.factory.initial
+	at javax.naming.spi.NamingManager.getInitialContext(NamingManager.java:662)
+	at javax.naming.InitialContext.getDefaultInitCtx(InitialContext.java:313)
+	at javax.naming.InitialContext.getURLOrDefaultInitCtx(InitialContext.java:350)
+	at javax.naming.InitialContext.lookup(InitialContext.java:417)
+	at ru.ramazanov.dbconnect.ConnectionToDB.<clinit>(ConnectionToDB.java:39)
+	at ru.ramazanov.models.Model.getConnection(Model.java:16)
+	at ru.ramazanov.models.Model.getStatement(Model.java:24)
+	at ru.ramazanov.TestFunc.main(TestFunc.java:39)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:147)
+TRACE   2017-03-02 17:43:13,018 [main] ru.ramazanov.dbconnect.ConnectionToDB  - Successful connect to base: jdbc:mysql://localhost:3306/students
+TRACE   2017-03-02 17:44:59,597 [main] ru.ramazanov.dbconnect.ConnectionToDB  - Successful connect to base: jdbc:mysql://localhost:3306/students
+Successful connect to base: jdbc:mysql://localhost:3306/students
+ 2017-03-02 17:46:22,070 [main] ru.ramazanov.dbconnect.ConnectionToDB  -  TRACE  Successful connect to base: jdbc:mysql://localhost:3306/students
+ 2017-03-02 17:47:52,825 [main] ru.ramazanov.dbconnect.ConnectionToDB  - TRACE  Successful connect to base: jdbc:mysql://localhost:3306/students
+ 2017-03-02 17:49:02,159 [main] ru.ramazanov.dbconnect.ConnectionToDB  - TRACE  Successful connect to base: jdbc:mysql://localhost:3306/students
+ 2017-03-02 17:50:37,523 [main] ru.ramazanov.dbconnect.ConnectionToDB  - TRACE  Successful connect to base: jdbc:mysql://localhost:3306/students
+ 2017-03-02 17:57:13,374 [main] ru.ramazanov.dbconnect.ConnectionToDB  - TRACE  Successful connect to base: jdbc:mysql://localhost:3306/students
+ 2017-03-02 17:57:54,036 [main] ru.ramazanov.dbconnect.ConnectionToDB  - TRACE  Successful connect to base: jdbc:mysql://localhost:3306/students
+ 2017-03-02 17:58:20,730 [main] ru.ramazanov.dbconnect.ConnectionToDB  - TRACE  Successful connect to base: jdbc:mysql://localhost:3306/students
+ 2017-03-02 19:15:11,482 [main] ru.ramazanov.dbconnect.ConnectionToDB  - TRACE  Successful connect to base: jdbc:mysql://localhost:3306/students
+ 2017-03-02 19:15:11,766 [main] ru.ramazanov.dbconnect.ConnectionToDB  - TRACE  Successful connect to base: jdbc:mysql://localhost:3306/students
+ 2017-03-02 19:16:17,713 [main] ru.ramazanov.dbconnect.ConnectionToDB  - TRACE  Successful connect to base: jdbc:mysql://localhost:3306/students
+ 2017-03-02 19:16:17,916 [main] ru.ramazanov.dbconnect.ConnectionToDB  - TRACE  Successful connect to base: jdbc:mysql://localhost:3306/students
+ 2017-03-02 19:17:12,209 [main] ru.ramazanov.dbconnect.ConnectionToDB  - TRACE  Successful connect to base: jdbc:mysql://localhost:3306/students
+ 2017-03-02 19:17:12,360 [main] ru.ramazanov.dbconnect.ConnectionToDB  - TRACE  Successful connect to base: jdbc:mysql://localhost:3306/students
+ 2017-03-02 19:18:45,456 [main] ru.ramazanov.dbconnect.ConnectionToDB  - TRACE  Successful connect to base: jdbc:mysql://localhost:3306/students
+ 2017-03-02 19:18:45,620 [main] ru.ramazanov.dbconnect.ConnectionToDB  - TRACE  Successful connect to base: jdbc:mysql://localhost:3306/students
+ 2017-03-02 19:24:00,875 [main] ru.ramazanov.dbconnect.ConnectionToDB  - TRACE  Successful connect to base: jdbc:mysql://localhost:3306/students
+ 2017-03-02 19:24:42,902 [main] ru.ramazanov.dbconnect.ConnectionToDB  - TRACE  Successful connect to base: jdbc:mysql://localhost:3306/students
+ 2017-03-02 19:32:32,360 [main] ru.ramazanov.dbconnect.ConnectionToDB  - TRACE  Successful connect to base: jdbc:mysql://localhost:3306/students
+ 2017-03-02 19:33:46,549 [main] ru.ramazanov.dbconnect.ConnectionToDB  - TRACE  Successful connect to base: jdbc:mysql://localhost:3306/students
+ 2017-03-02 19:34:05,645 [main] ru.ramazanov.dbconnect.ConnectionToDB  - TRACE  Successful connect to base: jdbc:mysql://localhost:3306/students
+ 2017-03-03 08:34:32,431 [main] ru.ramazanov.dbconnect.ConnectionToDB  - TRACE  Successful connect to base: jdbc:mysql://localhost:3306/students
+ 2017-03-03 08:35:51,382 [main] ru.ramazanov.dbconnect.ConnectionToDB  - TRACE  Successful connect to base: jdbc:mysql://localhost:3306/students
+ 2017-03-03 08:37:58,206 [main] ru.ramazanov.dbconnect.ConnectionToDB  - TRACE  Successful connect to base: jdbc:mysql://localhost:3306/students
+ 2017-03-03 08:48:46,656 [main] ru.ramazanov.dbconnect.ConnectionToDB  - TRACE  Successful connect to base: jdbc:mysql://localhost:3306/students
+ 2017-03-03 08:49:32,683 [main] ru.ramazanov.dbconnect.ConnectionToDB  - TRACE  

@@ -37,4 +37,8 @@ public class Mailer {
             throw new RuntimeException(e);
         }
     }
+
+    public static void sendFaikMail(String email, String subject, String text){
+        System.out.println("----- Fake mail --- " + email + " text = " + text);
+    }
 }

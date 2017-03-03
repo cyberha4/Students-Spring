@@ -7,4 +7,5 @@ import ru.ramazanov.common.UserDaoException;
  */
 public interface IUserService {
     public boolean autorise(String login, String password) throws UserDaoException;
+    public boolean registration (String login, String password);
 }

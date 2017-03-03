@@ -1,5 +1,6 @@
 package ru.ramazanov.models.dao;
 
+import org.springframework.stereotype.Repository;
 import ru.ramazanov.common.StudentDaoException;
 import ru.ramazanov.models.Model;
 import ru.ramazanov.models.pojo.Student;
@@ -15,7 +16,8 @@ import java.util.List;
 /**
  * Created by admin on 23.02.2017.
  */
-public class StudentDAO {
+@Repository
+public class StudentDAO implements StudentsRepository{
     public static final Logger logger = Logger.getLogger(StudentDAO.class);
     static {
         DOMConfigurator.configure("C:\\Users\\admin\\IdeaProjects\\Innopolis\\servlet\\log4j.xml");
@@ -25,7 +27,10 @@ public class StudentDAO {
             " `name` = ?, `birthday` = ?, `sex` = ? WHERE `students`.`id` = ?";
     private static final String SQL_INSERT_USER = "INSERT INTO `Students`.`students` " +
             "(group_id, name, birthday, sex) VALUES (?,?,?,?)";
-    public static List<Student> getAllStudents() {
+    private static final String SQL_INSERT_USER2 = "INSERT INTO `Students`.`students` " +
+            "(group_id, name, birthday, sex, email) VALUES (?,?,?,?,?)";
+
+    public List<Student> getAllStudents() {
         List<Student> studentList = new ArrayList<>();
         Student student;
 
@@ -48,7 +53,7 @@ public class StudentDAO {
         return studentList;
     }
 
-    public static Student getStudentById(int id) {
+    public Student getStudentById(int id) {
         Student student = new Student();
 
         try {
@@ -67,7 +72,7 @@ public class StudentDAO {
         return student;
     }
 
-    public static boolean updateStudents(int id, int group_id, String name, String birthday, String sex) {
+    public boolean updateStudents(int id, int group_id, String name, String birthday, String sex) {
         try {
 
             PreparedStatement ps = Model.getConnection().prepareStatement(SQL_UPDATE_USER);
@@ -86,7 +91,8 @@ public class StudentDAO {
         return false;
     }
 
-    public static boolean addStudent(int group_id, String name, String birthday, String sex) throws StudentDaoException {
+    @Deprecated
+    public boolean addStudent(int group_id, String name, String birthday, String sex) throws StudentDaoException {
         try {
             PreparedStatement ps = Model.getConnection().prepareStatement(SQL_INSERT_USER);
             ps.setInt(1, group_id);
@@ -103,10 +109,28 @@ public class StudentDAO {
         }
     }
 
-    public static List<Student> getStudentByGroup(int groupId) {
-        List<Student> students = new ArrayList<Student>();
+    public boolean addStudent(Student student) throws StudentDaoException {
+        try {
+            PreparedStatement ps = Model.getConnection().prepareStatement(SQL_INSERT_USER2);
+            ps.setInt(1, student.getGroup_id());
+            ps.setString(2, student.getName());
+            ps.setString(3, student.getBirthdate());
+            ps.setString(4, student.getSex());
+            ps.setString(5, student.getEmail());
+            int count = ps.executeUpdate();
+            return count > 0;
 
-        Student student = new Student();
+        } catch (Exception e) {
+            logger.error("Some problems with connection to DB", e);
+            e.printStackTrace();
+            throw new StudentDaoException();
+        }
+    }
+
+    public List<Student> getStudentByGroup(int groupId) {
+        List<Student> students = new ArrayList<>();
+
+        Student student;
 
         try {
             ResultSet rs = Model.getStatement().executeQuery("SELECT * FROM students WHERE group_id="+groupId);
@@ -117,11 +141,15 @@ public class StudentDAO {
                 student.setName(rs.getString("name"));
                 student.setBirthdate(rs.getString("birthday"));
                 student.setSex(rs.getString("sex"));
+                student.setEmail(rs.getString("email"));
                 students.add(student);
             }
         } catch (SQLException e) {
+            logger.error("Sql exception getStudentByGroup (lection notify)", e);
             e.printStackTrace();
         }
+
+        logger.trace("Количесвто студентов в группе "+ students.size());
 
         return students;
     }

@@ -23,14 +23,6 @@ public class UsersServlet extends HttpServlet {
         String sql = "SELECT * FROM users";
         PrintWriter pw = resp.getWriter();
         ArrayList<String> userlist = new ArrayList<>();
-        try {
-            ResultSet rs =  ConnectionToDB.getInstance().createStatement().executeQuery(sql);
-            while(rs.next()){
-                userlist.add(rs.getString("name"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         req.setAttribute("userlist", userlist);
         getServletContext().getRequestDispatcher("/users.jsp").forward(req, resp);
 

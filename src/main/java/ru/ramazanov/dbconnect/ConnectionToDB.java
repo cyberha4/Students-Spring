@@ -1,37 +1,76 @@
 package ru.ramazanov.dbconnect;
 
+import org.apache.log4j.Logger;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * Created by admin on 16.02.2017.
+ * Created by admin on 26.02.2017.
  */
 public class ConnectionToDB {
-    private static final String url = "jdbc:mysql://localhost:3306/Students";
+    private static Logger logger = Logger.getLogger(ConnectionToDB.class);
+
+    private static final String url = "jdbc:mysql://localhost:3306/students";
     private static final String user = "root";
     private static final String password = "";
 
-    private static Connection instance;
+    private static Connection connection;
 
-    private ConnectionToDB(){
-        try {
-            try {
-                Class.forName("com.mysql.jdbc.Driver");
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-            instance = DriverManager.getConnection(url, user, password);
-        } catch (SQLException e) {
+    private static DataSource dataSource;
 
-            e.printStackTrace();
-        }
+    private static ConnectionToDB ourInstance = new ConnectionToDB();
+
+    public static ConnectionToDB getInstance() {
+        return ourInstance;
     }
 
-    public static Connection getInstance(){
-        if(instance == null){
-            new ConnectionToDB();
+    private ConnectionToDB() {
+    }
+    static {
+//        Context initContext = null;
+//        try {
+//            initContext = new InitialContext();
+//            dataSource = (DataSource) initContext.lookup("java:comp/env/jdbc/TEST");
+//        } catch (NamingException e) {
+//            logger.error("Не найдена конфигурация для connection pull", e);
+//            e.printStackTrace();
+//        }
+    }
+
+    /**Возвращает подключение к БД
+     * @return connection
+     */
+    public static Connection getConnection() {
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection(url, user, password);
+
+            logger.trace("Successful connect to base: "+url);
+        } catch (ClassNotFoundException e) {
+            logger.error(e);
+            System.out.println("Не найден драйвер");
+        } catch (SQLException e) {
+            logger.error(e);
+            System.out.println("Ошибка подключение к БД!");
         }
-        return instance;
+        return connection;
+    }
+
+    public static Connection getConnection2() {
+
+        try {
+            connection = dataSource.getConnection();
+        } catch (SQLException e) {
+            logger.error("Connection exception", e);
+            e.printStackTrace();
+        }
+        return connection;
     }
 }

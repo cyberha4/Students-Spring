@@ -10,15 +10,15 @@ import java.sql.SQLException;
  */
 public class Main {
     public static void main(String[] args) {
-        String sql = "SELECT * FROM users";
-        try {
-            ResultSet rs = ConnectionToDB.getInstance().createStatement().executeQuery(sql);
-            while (rs.next()) {
-
-                System.out.println(rs.getString("id"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        //String sql = "SELECT * FROM users";
+        //try {
+        //    ResultSet rs = ConnectionToDB.getInstance().createStatement().executeQuery(sql);
+        //    while (rs.next()) {
+//
+        //        System.out.println(rs.getString("id"));
+        //    }
+        //} catch (SQLException e) {
+        //    e.printStackTrace();
+        //}
     }
 }

@@ -1,5 +1,7 @@
 package ru.ramazanov.models.pojo;
 
+import java.sql.Date;
+
 /**
  * Created by admin on 24.02.2017.
  */

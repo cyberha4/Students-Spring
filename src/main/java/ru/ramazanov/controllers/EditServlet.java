@@ -5,6 +5,7 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import ru.ramazanov.common.UserDaoException;
 import ru.ramazanov.models.pojo.Student;
 import ru.ramazanov.services.StudentService;
+import ru.ramazanov.services.StudentServiceInterface;
 import ru.ramazanov.services.UserService;
 
 import javax.servlet.ServletConfig;
@@ -18,8 +19,15 @@ import java.io.IOException;
  * Created by admin on 23.02.2017.
  */
 public class EditServlet extends HttpServlet{
+
+
+    private StudentServiceInterface studentService;
+
     @Autowired
-    private UserService userService;
+    public void setStudentService(StudentServiceInterface studentService) {
+        this.studentService = studentService;
+    }
+
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -31,14 +39,9 @@ public class EditServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer id;
-        try {
-            userService.autorise("test", "fsd");
-        } catch (UserDaoException e) {
-            e.printStackTrace();
-        }
         if (req.getParameter("id") != null) {
             id = Integer.parseInt(req.getParameter("id"));
-            Student student = StudentService.getStudentById(id);
+            Student student = studentService.getStudentById(id);
             System.out.println(student.getName());
             req.setAttribute("student", student);
             getServletContext().getRequestDispatcher("/edit.jsp").forward(req, resp);
@@ -54,7 +57,7 @@ public class EditServlet extends HttpServlet{
         String sex = req.getParameter("sex");
         int id = Integer.parseInt(req.getParameter("id"));
         int group_id = Integer.parseInt(req.getParameter("group"));
-        if (StudentService.updateStudent(id, group_id, name, birthday, sex)) {
+        if (studentService.updateStudent(id, group_id, name, birthday, sex)) {
             resp.sendRedirect("spisok");
         } else {
             resp.sendRedirect("error.jsp");

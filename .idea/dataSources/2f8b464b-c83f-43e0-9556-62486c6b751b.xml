@@ -62,115 +62,109 @@
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="23" parent="10" name="id_student">
-      <Position>2</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="24" parent="10" name="id_lection">
+    <column id="23" parent="10" name="id_lection">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="25" parent="10" name="date">
+    <column id="24" parent="10" name="date">
       <Position>4</Position>
-      <DataType>date|0</DataType>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="25" parent="10" name="id_group">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
     <index id="26" parent="10" name="id_lection">
       <ColNames>id_lection</ColNames>
     </index>
-    <index id="27" parent="10" name="id_student">
-      <ColNames>id_student</ColNames>
-      <Unique>1</Unique>
+    <index id="27" parent="10" name="id_group">
+      <ColNames>id_group</ColNames>
     </index>
     <key id="28" parent="10" name="PRIMARY">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="29" parent="10" name="id_student">
-      <ColNames>id_student</ColNames>
-      <UnderlyingIndexName>id_student</UnderlyingIndexName>
-    </key>
-    <foreign-key id="30" parent="10" name="journal_ibfk_1">
-      <ColNames>id_student</ColNames>
-      <RefSchemaName>students</RefSchemaName>
-      <RefTableName>students</RefTableName>
+    <foreign-key id="29" parent="10" name="group">
+      <ColNames>id_group</ColNames>
+      <RefSchemaName>Students</RefSchemaName>
+      <RefTableName>groups</RefTableName>
       <RefColNames>id</RefColNames>
-      <OnUpdate>update</OnUpdate>
-      <OnDelete>delete</OnDelete>
     </foreign-key>
-    <foreign-key id="31" parent="10" name="journal_ibfk_2">
+    <foreign-key id="30" parent="10" name="lection">
       <ColNames>id_lection</ColNames>
       <RefSchemaName>Students</RefSchemaName>
       <RefTableName>lection</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="32" parent="11" name="id">
+    <column id="31" parent="11" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="33" parent="11" name="title">
+    <column id="32" parent="11" name="title">
       <Position>2</Position>
       <DataType>varchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="34" parent="11" name="text">
+    <column id="33" parent="11" name="text">
       <Position>3</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="35" parent="11" name="subject">
+    <column id="34" parent="11" name="subject">
       <Position>4</Position>
       <DataType>varchar(100)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="36" parent="11" name="PRIMARY">
+    <key id="35" parent="11" name="PRIMARY">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="37" parent="12" name="id">
+    <column id="36" parent="12" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="38" parent="12" name="group_id">
+    <column id="37" parent="12" name="group_id">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="39" parent="12" name="name">
+    <column id="38" parent="12" name="name">
       <Position>3</Position>
       <DataType>varchar(100)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="40" parent="12" name="birthday">
+    <column id="39" parent="12" name="birthday">
       <Position>4</Position>
       <DataType>date|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="41" parent="12" name="sex">
+    <column id="40" parent="12" name="sex">
       <Position>5</Position>
       <DataType>varchar(1)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="42" parent="12" name="email">
+    <column id="41" parent="12" name="email">
       <Position>6</Position>
       <DataType>varchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="43" parent="12" name="group_id">
+    <index id="42" parent="12" name="group_id">
       <ColNames>group_id</ColNames>
     </index>
-    <key id="44" parent="12" name="PRIMARY">
+    <key id="43" parent="12" name="PRIMARY">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="45" parent="12" name="students_ibfk_1">
+    <foreign-key id="44" parent="12" name="students_ibfk_1">
       <ColNames>group_id</ColNames>
       <RefSchemaName>students</RefSchemaName>
       <RefTableName>groups</RefTableName>

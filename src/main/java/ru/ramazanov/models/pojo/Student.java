@@ -9,11 +9,7 @@ public class Student {
     private String name;
     private String birthdate;
     private String sex;
-    private String email;
 
-    public Student(){
-
-    }
 
     public Student(int id, int group_id, String name, String birthdate, String sex) {
         this.id = id;
@@ -30,6 +26,20 @@ public class Student {
         this.birthdate = birthdate;
         this.sex = sex;
         this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    private String email;
+
+    public Student(){
+
     }
 
     public int getId() {
@@ -71,4 +81,31 @@ public class Student {
     public void setSex(String sex) {
         this.sex = sex;
     }
+
+    @Override
+    public int hashCode() {
+        return email.hashCode() * 21;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null){
+            return false;
+        }
+
+        if (obj == this){
+            return true;
+        }
+
+        if(!(obj instanceof Student)){
+            return false;
+        }
+
+        Student student = (Student) obj;
+        if(this.getEmail().equals(student.getEmail())){
+            return true;
+        }
+        return false;
+    }
+
 }

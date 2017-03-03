@@ -1,5 +1,6 @@
 package ru.ramazanov.models.dao;
 
+import org.springframework.stereotype.Repository;
 import ru.ramazanov.common.UserDaoException;
 import ru.ramazanov.dbconnect.ConnectionToDB;
 import ru.ramazanov.models.Model;
@@ -13,8 +14,8 @@ import java.sql.*;
 /**
  * Created by admin on 23.02.2017.
  */
-@Component
-public class UserDAO {
+@Repository
+public class UserDAO implements UserRepository{
     public static final Logger logger = Logger.getLogger(UserDAO.class);
     static {
         DOMConfigurator.configure("C:\\Users\\admin\\IdeaProjects\\Innopolis\\servlet\\log4j.xml");
@@ -22,6 +23,7 @@ public class UserDAO {
     private static final String SQL_FIND_USER = "SELECT * FROM users WHERE login=? AND password=?";
     private static final String SQL_CREATE_USER =
             "INSERT INTO users (login, password) VALUES (?,?)";
+
     public UserNew getUserByLoginAndPassword(String login, String password) throws UserDaoException {
         UserNew user = new UserNew();
         String sql = "SELECT * FROM users WHERE login="+login+", password="+password;
@@ -50,9 +52,9 @@ public class UserDAO {
         return user;
     }
 
-    public static boolean registrationUser(String login, String password){
+    public boolean registrationUser(String login, String password){
         UserNew user = new UserNew();
-        Connection query =  ConnectionToDB.getInstance();
+        Connection query =  ConnectionToDB.getConnection();
         try {
             //Statement st = Model.getStatement();
             PreparedStatement ps = query.prepareStatement(SQL_CREATE_USER);

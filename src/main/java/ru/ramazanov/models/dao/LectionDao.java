@@ -5,9 +5,7 @@ import ru.ramazanov.models.pojo.Lection;
 import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,15 +43,34 @@ public class LectionDao {
     }
 
 
-    public static List<Lection> getNearestLection() {
-        try (Connection conn = Model.getConnection()) {
+    public static List<Lection> getNearestLections() {
+        String SQL_NEARED_LECTIONS =
+                "SELECT * FROM \"journal\" WHERE date >? AND date <?";
+        List<Lection> lections = new ArrayList<>();
+        try(Connection connection = Model.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_NEARED_LECTIONS);
+            preparedStatement.setTimestamp(1,new Timestamp(System.currentTimeMillis()));
+            preparedStatement.setTimestamp(2,new Timestamp(System.currentTimeMillis()+60*60*1000));
+            ResultSet resultSet = preparedStatement.executeQuery();
 
+            while(resultSet.next()) {
+                logger.debug(resultSet.getString("name"));
+                Lection lection = new Lection();
+
+                //Lection lection = new Lection(resultSet.getInt("id"),
+                //        resultSet.getString("name"),
+                //        resultSet.getString("subject"),
+                //        resultSet.getString("textLection"),
+                //        resultSet.getInt("groupid"),
+                //        resultSet.getDate("date"));
+                lections.add(lection);
+            }
         } catch (SQLException e) {
-
-            e.printStackTrace();
+            logger.error(e);
         }
 
-        return null;
+        logger.debug(lections.size());
+        return lections;
 
     }
 }

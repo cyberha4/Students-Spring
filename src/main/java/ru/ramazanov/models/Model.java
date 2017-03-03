@@ -12,7 +12,8 @@ import java.sql.Statement;
  */
 public class Model {
     public static Connection getConnection(){
-        Connection query =  ConnectionToDB.getInstance();
+        //Connection query =  ConnectionToDB.getInstance();
+        Connection query =  ConnectionToDB.getConnection();
         return query;
     }
     public static ResultSet getResultSet(String sql) throws SQLException {

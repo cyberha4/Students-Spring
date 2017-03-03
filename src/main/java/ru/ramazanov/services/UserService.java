@@ -8,6 +8,7 @@ import ru.ramazanov.common.UserDaoException;
 import ru.ramazanov.models.dao.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.ramazanov.models.dao.UserRepository;
 
 import java.util.Random;
 
@@ -23,10 +24,10 @@ public class UserService implements IUserService {
 
     private int anInt = 0;
 
-    private UserDAO userDAO;
+    private UserRepository userDAO;
 
     @Autowired
-    public UserService(UserDAO userDAO) {
+    public UserService(UserRepository userDAO) {
         this.userDAO = userDAO;
     }
 
@@ -41,7 +42,7 @@ public class UserService implements IUserService {
         return userDAO.getUserByLoginAndPassword(login, password).getIdUser() != 0;
     }
 
-    public static boolean registration (String login, String password){
-        return UserDAO.registrationUser(login, password);
+    public boolean registration (String login, String password){
+        return userDAO.registrationUser(login, password);
     }
 }

@@ -28,6 +28,9 @@
     <label for="birthday">День рождения:</label>
     <input type="text" name="birthday" id="birthday" value="" placeholder="Input">
     <br>
+    <label for="email">email:</label>
+    <input type="text" name="email" id="email" value="" placeholder="Input">
+    <br>
     <label for="sex">Пол:</label>
     <input type="text" name="sex" id="sex" value="" placeholder="Input">
     <br>
